@@ -1,13 +1,18 @@
 import React from 'react'
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
+import Grid from '@mui/material/Grid'
 
 const LoginLayout = () => {
   return (
-    <div>
-        <div>Layout Login</div>
-        <Outlet />
-        <div>Layout Login</div>
-    </div>
+    <Grid
+      container
+      sx={{ px: 8, py: 4 }}
+      justifyContent="center"
+      alignItems="center"
+      direction="column"
+    >
+      <Outlet />
+    </Grid>
   )
 }
 
