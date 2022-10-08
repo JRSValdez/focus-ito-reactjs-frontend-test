@@ -6,10 +6,10 @@ const LoginLayout = () => {
   return (
     <Grid
       container
-      sx={{ px: 8, py: 4 }}
       justifyContent="center"
       alignItems="center"
       direction="column"
+      className="login-page"
     >
       <Outlet />
     </Grid>

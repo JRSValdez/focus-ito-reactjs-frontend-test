@@ -1,13 +1,14 @@
 import React from 'react'
-import { Outlet } from "react-router-dom";
-
-
+import { Outlet } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import { useVerifyAuth } from '../hooks/useVerifyAuth'
 const ProtectedLayout = () => {
+  useVerifyAuth()
   return (
     <div>
-        <div>Layout Protected</div>
-        <Outlet />
-        <div>Layout Protected</div>
+      <Navbar />
+      <Outlet />
+      <div>Layout Protected</div>
     </div>
   )
 }
