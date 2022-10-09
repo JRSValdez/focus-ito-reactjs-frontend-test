@@ -1,56 +1,60 @@
-import React, { useState } from 'react'
-import { Formik, Form, Field, FieldProps } from 'formik'
-import { useNavigate } from 'react-router-dom'
-import api from '../../apis/authAPI'
-import { AxiosResponse } from '../../utils/commonTypes'
-import { Grid, TextField, Box, Card, CardContent } from '@mui/material'
-import LoginIcon from '@mui/icons-material/Login'
-import { PageTitle } from '../../components/Texts'
-import { PrimaryButton } from '../../components/Buttoms'
-import { ErrorAlert } from '../../components/Alerts'
+import React, { useState } from "react";
+import { Formik, Form, Field, FieldProps } from "formik";
+import { useNavigate } from "react-router-dom";
+import api from "../../apis/authAPI";
+import { AxiosResponse } from "../../utils/commonTypes";
+import { Grid, TextField, Box, Card, CardContent } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import { PageTitle } from "../../components/Texts";
+import { PrimaryButton } from "../../components/Buttoms";
+import { ErrorAlert } from "../../components/Alerts";
+import HeadTtile from "../../components/HeadTitle";
+
 interface LoginFormInterface {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 const Login = () => {
-  const initialValues: LoginFormInterface = { email: '', password: '' }
-  const [error, setError] = useState(null)
-  const navigate = useNavigate()
+  const initialValues: LoginFormInterface = { email: "", password: "" };
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: any) => {
-    setError(null)
-    const { data, error: responseError, success } = await api.post<
-      never,
-      AxiosResponse
-    >('/login', values)
+    setError(null);
+    const {
+      data,
+      error: responseError,
+      success,
+    } = await api.post<never, AxiosResponse>("/login", values);
 
-    console.log({ data, responseError, success })
+    console.log({ data, responseError, success });
 
     if (success) {
-      localStorage.setItem('token', data.token)
-      navigate('/')
+      localStorage.setItem("token", data.token);
+      navigate("/");
     } else {
-      setError(responseError.error)
+      setError(responseError.error);
     }
-  }
+  };
 
   const handleValidate = (values: LoginFormInterface) => {
-    let errors: any = {}
+    let errors: any = {};
 
     if (!values.email) {
-      errors.email = 'Required'
+      errors.email = "Required";
     }
 
     if (!values.password) {
-      errors.password = 'Required'
+      errors.password = "Required";
     }
 
-    return errors
-  }
+    return errors;
+  };
 
   return (
     <Grid container justifyContent="center">
+      <HeadTtile pageName="Login" />
       <Grid item xs={10} md={4}>
         <Box>
           <Card>
@@ -64,16 +68,11 @@ const Login = () => {
                 validate={handleValidate}
               >
                 {(props) => {
-                  const {
-                    values,
-                    touched,
-                    errors,
-                    handleChange,
-                    handleBlur,
-                  } = props
+                  const { values, touched, errors, handleChange, handleBlur } =
+                    props;
                   return (
                     <Form>
-                      <Field name={'email'}>
+                      <Field name={"email"}>
                         {({ field }: FieldProps) => (
                           <Grid container>
                             <TextField
@@ -86,7 +85,7 @@ const Login = () => {
                               helperText={
                                 errors.email && touched.email
                                   ? errors.email
-                                  : ''
+                                  : ""
                               }
                               error={Boolean(errors.email && touched.email)}
                               fullWidth
@@ -97,7 +96,7 @@ const Login = () => {
                         )}
                       </Field>
 
-                      <Field name={'password'}>
+                      <Field name={"password"}>
                         {({ field }: FieldProps) => (
                           <Grid container>
                             <TextField
@@ -107,16 +106,16 @@ const Login = () => {
                               value={values.password}
                               onChange={handleChange}
                               error={Boolean(
-                                errors.password && touched.password,
+                                errors.password && touched.password
                               )}
                               onBlur={handleBlur}
                               helperText={
                                 errors.password && touched.password
                                   ? errors.password
-                                  : ''
+                                  : ""
                               }
                               inputProps={{
-                                type: 'password',
+                                type: "password",
                               }}
                               fullWidth
                               autoComplete="off"
@@ -132,7 +131,7 @@ const Login = () => {
                         icon={<LoginIcon />}
                       />
                     </Form>
-                  )
+                  );
                 }}
               </Formik>
             </CardContent>
@@ -140,7 +139,7 @@ const Login = () => {
         </Box>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
