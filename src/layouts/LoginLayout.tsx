@@ -9,7 +9,7 @@ const LoginLayout = () => {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      className="login-page"
+      className="login-page login-bg"
     >
       <Outlet />
     </Grid>

@@ -1,16 +1,16 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import React from 'react'
+import { Grid } from '@mui/material'
 
-interface MovieTtileProps {
-  title: string;
+interface MovieTitleProps {
+  title: string
 }
 
-const MovieTitle = ({ title }: MovieTtileProps) => {
+const MovieTitle = ({ title }: MovieTitleProps) => {
   return (
-    <Grid container justifyContent="center">
-      <h3>{title}</h3>
+    <Grid container justifyContent="start">
+      <h3 className="movie-list-title">{title}</h3>
     </Grid>
-  );
-};
+  )
+}
 
-export default MovieTitle;
+export default MovieTitle

@@ -1,15 +1,19 @@
 import React from 'react'
+import { Grid, Container } from '@mui/material'
 import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import { useVerifyAuth } from '../hooks/useVerifyAuth'
 const ProtectedLayout = () => {
   useVerifyAuth()
   return (
-    <div>
+    <Grid container className="movies-bg" direction="column">
       <Navbar />
-      <Outlet />
-      <div>Layout Protected</div>
-    </div>
+      <Container sx={{ mt: 2 }}>
+        <Outlet />
+      </Container>
+      <Footer />
+    </Grid>
   )
 }
 

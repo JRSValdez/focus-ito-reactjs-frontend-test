@@ -13,10 +13,17 @@ code {
 }
 
 .login-page {
-  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
   height: 100vh;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.login-bg {
+  background: linear-gradient(90deg, #000851 0%, #1cb5e0 100%);
+}
+
+.navbar-bg {
+  background: linear-gradient(90deg, #1cb5e0 0%, #000851 100%);
 }
 
 .page-title {
@@ -26,4 +33,63 @@ code {
 
 .primary-button {
   font-size: 1.2rem;
+}
+
+.movies-bg {
+  background: #f0f0f0;
+}
+
+.movie-list-title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.movie-list-poster-image {
+  width: 100% !important;
+}
+
+.movie-list-poster-image img {
+  min-height: 330px !important;
+  min-width: 220px !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 100% !important;
+}
+
+.movie-list-overview {
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.overview-text {
+  margin: 0 !important;
+}
+
+.footer {
+  font-size: 1.2rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-author-text {
+  color: #fff;
+}
+
+.footer-title {
+  display: flex;
+  align-items: center;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+/* CUSTOM MUI */
+
+.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #1cb5e0 !important;
+  font-weight: 700;
 }

@@ -1,23 +1,23 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import Movie from "./Movie";
+import React from 'react'
+import { Grid } from '@mui/material'
+import Movie from './Movie'
 
-import { MovieProps } from "../../utils/commonTypes";
+import { MovieProps } from '../../utils/commonTypes'
 
 interface MovieListProps {
-  movies: MovieProps[];
+  movies: MovieProps[]
 }
 
 const MovieList = ({ movies }: MovieListProps) => {
   return (
     <Grid container>
-      {movies.map((movie) => (
-        <Grid item xs={6} md={4}>
+      {movies.map((movie, key) => (
+        <Grid key={`movie_${key}`} item sx={{ p: 2 }} xs={12} sm={4} md={3}>
           <Movie {...movie} />
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
-export default MovieList;
+export default MovieList
