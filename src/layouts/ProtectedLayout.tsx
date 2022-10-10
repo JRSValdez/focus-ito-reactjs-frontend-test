@@ -9,7 +9,7 @@ const ProtectedLayout = () => {
   return (
     <Grid container className="movies-bg" direction="column">
       <Navbar />
-      <Container sx={{ mt: 2 }}>
+      <Container sx={{ mt: 2 }} className="page-container">
         <Outlet />
       </Container>
       <Footer />

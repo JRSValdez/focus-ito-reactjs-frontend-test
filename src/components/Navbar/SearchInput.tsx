@@ -50,7 +50,7 @@ const SearchInput = () => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Search movie…"
         inputProps={{ 'aria-label': 'search' }}
       />
     </Search>

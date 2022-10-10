@@ -31,8 +31,17 @@ code {
   text-align: center;
 }
 
+.page-subtitle {
+  font-size: 1.9rem;
+  text-align: left;
+}
+
 .primary-button {
   font-size: 1.2rem;
+}
+
+.page-container {
+  min-height: calc(100vh - 176px);
 }
 
 .movies-bg {
@@ -65,6 +74,82 @@ code {
   margin: 0 !important;
 }
 
+.movie-release-date-text {
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+.movie-title-container {
+  position: relative;
+  overflow-y: visible;
+}
+
+.movie-detail-overview-text {
+  font-size: 1.5rem;
+  text-align: justify;
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.movie-detail-info-list {
+  list-style-type: none;
+}
+
+.movie-detail-info-list li {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.movie-detail-info-list span:nth-child(1) {
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.favorite-icon {
+  font-size: 50px !important;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.favorite-icon-is-favorite {
+  color: #fdfd3c;
+  background: linear-gradient(90deg, #000851 40%, #1cb5e0 100%);
+  border-radius: 50%;
+}
+
+/* Loader */
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loader-animation {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.votes-average-badge-container {
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  background: linear-gradient(90deg, #000851 40%, #1cb5e0 100%);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 7px;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 50px;
+}
+
+/* Footer */
+
 .footer {
   font-size: 1.2rem;
 }
@@ -92,4 +177,12 @@ footer {
 .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #1cb5e0 !important;
   font-weight: 700;
+}
+
+/* QUERYS */
+
+@media (max-width: 600px) {
+  .page-container {
+    min-height: calc(100vh - 168px);
+  }
 }

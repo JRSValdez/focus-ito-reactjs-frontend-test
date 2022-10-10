@@ -6,11 +6,14 @@ import { getSWRFetcher } from '../../utils/swr/getFetcher'
 import MovieList from '../../components/Movies/MovieList'
 import { UnknownChangeEvent } from '../../utils/commonTypes'
 import { PageTitle } from '../../components/Texts'
-
+import Loader from '../../components/Loader'
+import { useNavigate } from 'react-router-dom'
 const TITLE = 'Popular movies'
 const MAX_TOTAL_PAGES = process.env.REACT_APP_MAX_MOVIES_TOTAL_PAGES || 500
 
 const Home = () => {
+  const navigate = useNavigate()
+
   const [currentPage, setCurrentPage] = useState(1)
 
   const { data: response, error } = useSWR(
@@ -27,7 +30,9 @@ const Home = () => {
   return (
     <Grid container justifyContent="center" className="movies-bg">
       <HeadTitle pageName={TITLE} />
-      {data && (
+      {!data ? (
+        <Loader />
+      ) : (
         <>
           <PageTitle text={TITLE} />
           <MovieList movies={data?.results} />

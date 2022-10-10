@@ -12,8 +12,10 @@ export type AxiosResponse = {
 }
 
 export interface MovieProps {
+  id: string
   title: string
   poster_path: string
   release_date: string
   vote_average: string
+  overview: string
 }

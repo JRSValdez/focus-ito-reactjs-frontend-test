@@ -12,7 +12,7 @@ const MovieList = ({ movies }: MovieListProps) => {
   return (
     <Grid container>
       {movies.map((movie, key) => (
-        <Grid key={`movie_${key}`} item sx={{ p: 2 }} xs={12} sm={4} md={3}>
+        <Grid item key={`movie_${key}`} sx={{ p: 2 }} xs={12} sm={4} md={3}>
           <Movie {...movie} />
         </Grid>
       ))}

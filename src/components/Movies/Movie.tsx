@@ -4,12 +4,20 @@ import MovieOverview from './MovieOverview'
 import { MovieProps } from '../../utils/commonTypes'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import { useNavigate } from 'react-router-dom'
 
 const Movie = (props: MovieProps) => {
-  const { title, poster_path, release_date, vote_average } = props
+  const navigate = useNavigate()
+
+  const { id, title, poster_path, release_date, vote_average, overview } = props
+
+  const handleMovieClick = (movieId: string) => {
+    navigate(`/movie/${movieId}`)
+  }
+
   return (
     <Grid container>
-      <Card>
+      <Card onClick={() => handleMovieClick(id)}>
         <CardActionArea>
           <LazyLoadImage
             effect="blur"
@@ -20,8 +28,9 @@ const Movie = (props: MovieProps) => {
           <CardContent className="movie-list-overview">
             <MovieOverview
               title={title}
-              overviewText={`Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica`}
+              releaseDate={release_date}
+              votesAverage={vote_average}
+              overviewText={overview}
             />
           </CardContent>
         </CardActionArea>

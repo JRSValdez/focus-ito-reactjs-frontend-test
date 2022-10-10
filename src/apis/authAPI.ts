@@ -37,7 +37,6 @@ api.interceptors.request.use(function (config: any) {
 
 api.interceptors.response.use(
   function (response: AxiosResponse) {
-    console.log({ response })
     return { success: true, error: false, ...response }
   },
   function (error: AxiosError) {

@@ -10,8 +10,11 @@ import LocalMoviesIcon from '@mui/icons-material/LocalMovies'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import SearchInput from './SearchInput'
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
+  const navigate = useNavigate()
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
@@ -35,6 +38,12 @@ export default function Navbar() {
     setMobileMoreAnchorEl(event.currentTarget)
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('favorites')
+    navigate('/login')
+  }
+
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
@@ -52,7 +61,7 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   )
 
