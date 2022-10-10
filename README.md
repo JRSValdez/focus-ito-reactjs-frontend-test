@@ -1,19 +1,5 @@
 # FOCUS - ITO React JS Test - Ricardo Sifontes
 
-## Commands
-
-Install dependencies
-
-```
-npm install
-```
-
-Run development server
-
-```
-npm run start
-```
-
 # Steps
 
 - Create .env.local file
@@ -31,6 +17,18 @@ REACT_APP_TMDB_API_URL=https://api.themoviedb.org/3
 REACT_APP_TMDB_IMAGE_URL=https://image.tmdb.org/t/p/w220_and_h330_face
 
 REACT_APP_TMDB_BIG_IMAGE_URL=https://image.tmdb.org/t/p/w300
+```
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Run development server
+
+```
+npm run start
 ```
 
 ## Dependencies

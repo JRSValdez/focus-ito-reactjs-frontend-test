@@ -12,7 +12,7 @@ import NotFound from './pages/notfound'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/focus-ito-reactjs-frontend-test/">
       <Routes>
         <Route path="/login" element={<LoginLayout />}>
           <Route index element={<Login />} />
