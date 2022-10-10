@@ -128,7 +128,7 @@ export default function Navbar() {
   )
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} className="navbar">
       <AppBar position="static" className="login-bg">
         <Toolbar>
           <IconButton
