@@ -31,6 +31,8 @@ npm install
 npm run start
 ```
 
+- Navigate to https://localhost:3000/focus-ito-reactjs-frontend-test
+
 ## Dependencies
 
 - typescript
