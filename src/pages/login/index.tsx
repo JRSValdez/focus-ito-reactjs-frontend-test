@@ -11,11 +11,14 @@ import { ErrorAlert } from '../../components/Alerts'
 import HeadTtile from '../../components/HeadTitle'
 import loginAnimation from '../../assets/lottie/login-animation.json'
 import Loader from '../../components/Loader'
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies'
 
 interface LoginFormInterface {
   email: string
   password: string
 }
+
+const TITLE = 'MyMovies - Login'
 
 const Login = () => {
   const initialValues: LoginFormInterface = { email: '', password: '' }
@@ -63,12 +66,15 @@ const Login = () => {
         <Loader animation={loginAnimation} />
       ) : (
         <>
-          <HeadTtile pageName="Login" />
+          <HeadTtile pageName={TITLE} />
           <Grid item xs={10} md={4}>
             <Box>
+              <Grid container justifyContent="center">
+                <LocalMoviesIcon className="login-logo" />
+              </Grid>
               <Card>
                 <CardContent>
-                  <PageTitle text="Login" />
+                  <PageTitle text={TITLE} />
 
                   {error && <ErrorAlert text={error} />}
                   <Formik

@@ -22,6 +22,13 @@ code {
   background: linear-gradient(90deg, #000851 0%, #1cb5e0 100%);
 }
 
+/* Navbar */
+
+.login-logo {
+  font-size: 6rem !important;
+  color: #fff;
+}
+
 .navbar {
   z-index: 101;
 }
@@ -52,6 +59,8 @@ code {
 .page-container {
   min-height: calc(100vh - 176px);
 }
+
+/* Movies */
 
 .movies-bg {
   background: #f0f0f0;
