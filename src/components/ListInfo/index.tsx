@@ -15,7 +15,7 @@ const InfoList = ({ movie, properties }: InfoListProps) => {
         if (properties.includes(infoName) && infoValue)
           return (
             <li key={`movie_info_${key}`}>
-              <span>{infoName.split('_').join(' ')}</span>
+              <span>{infoName.split('_').join(' ')}:</span>
               <span>{infoValue}</span>
             </li>
           )

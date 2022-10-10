@@ -10,6 +10,8 @@ import LocalMoviesIcon from '@mui/icons-material/LocalMovies'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import SearchInput from './SearchInput'
+import LogoutIcon from '@mui/icons-material/Logout'
+import StarsIcon from '@mui/icons-material/Stars'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -45,6 +47,10 @@ export default function Navbar() {
     navigate('/login')
   }
 
+  const goToFavorites = () => {
+    navigate('/movie/favorites')
+  }
+
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
@@ -62,7 +68,17 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>
+        <IconButton
+          size="large"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <LogoutIcon />
+        </IconButton>
+        <p>Logout</p>
+      </MenuItem>
     </Menu>
   )
 
@@ -83,7 +99,7 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleLogOut}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -91,9 +107,22 @@ export default function Navbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <LogoutIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Logout</p>
+      </MenuItem>
+
+      <MenuItem onClick={goToFavorites}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <StarsIcon />
+        </IconButton>
+        <p>My favorites</p>
       </MenuItem>
     </Menu>
   )
@@ -109,7 +138,9 @@ export default function Navbar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <LocalMoviesIcon />
+            <Link to="/" className="navbar-title-text">
+              <LocalMoviesIcon />
+            </Link>
           </IconButton>
           <Typography
             variant="h6"
@@ -122,6 +153,19 @@ export default function Navbar() {
             </Link>
           </Typography>
           <SearchInput />
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <IconButton
+              size="small"
+              edge="end"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={goToFavorites}
+              color="inherit"
+            >
+              <StarsIcon />
+              My favorites
+            </IconButton>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
