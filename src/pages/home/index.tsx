@@ -8,6 +8,8 @@ import { UnknownChangeEvent } from '../../utils/commonTypes'
 import { PageTitle } from '../../components/Texts'
 import Loader from '../../components/Loader'
 import { useNavigate } from 'react-router-dom'
+import movieAnimation from '../../assets/lottie/movie-animation.json'
+
 const TITLE = 'Popular movies'
 const MAX_TOTAL_PAGES = process.env.REACT_APP_MAX_MOVIES_TOTAL_PAGES || 500
 
@@ -31,7 +33,7 @@ const Home = () => {
     <Grid container justifyContent="center" className="movies-bg">
       <HeadTitle pageName={TITLE} />
       {!data ? (
-        <Loader />
+        <Loader animation={movieAnimation} />
       ) : (
         <>
           <PageTitle text={TITLE} />

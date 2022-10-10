@@ -1,13 +1,16 @@
 import React from 'react'
 import Lottie from 'lottie-react'
-import movieAnimation from '../../assets/lottie/movie-animation.json'
 
-const Loader = () => {
+interface LoaderProps {
+  animation: any
+}
+
+const Loader = ({ animation }: LoaderProps) => {
   return (
     <div className="loader-container">
       <Lottie
         className="loader-animation"
-        animationData={movieAnimation}
+        animationData={animation}
         loop={true}
         style={{ maxWidth: '200px' }}
       />

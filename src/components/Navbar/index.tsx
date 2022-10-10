@@ -11,6 +11,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import SearchInput from './SearchInput'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   const navigate = useNavigate()
@@ -116,7 +117,9 @@ export default function Navbar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MyMovies
+            <Link to="/" className="navbar-title-text">
+              MyMovies
+            </Link>
           </Typography>
           <SearchInput />
           <Box sx={{ flexGrow: 1 }} />

@@ -12,6 +12,8 @@ import ListInfo from '../../../components/ListInfo'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 import FavoriteIcon from '../../../components/Movies/FavoriteIcon'
+import useFavoriteMovies from '../../../hooks/useFavoriteMovies'
+import movieAnimation from '../../../assets/lottie/movie-animation.json'
 
 const MovieDetail = () => {
   const [loading, setLoading] = useState(false)
@@ -23,16 +25,17 @@ const MovieDetail = () => {
     vote_average: '',
     overview: '',
   })
-  const [favoritesMovies, setFavoritesMovie] = useState<MovieProps[]>([])
-  const [isFavorite, setIsFavorite] = useState(false)
   const [relatedMovies, setRelatedMovies] = useState<MovieProps[]>([])
-  const params = useParams()
+  const { movieId } = useParams()
+  const { addFavorite, removeFavorite, isFavorite } = useFavoriteMovies()
 
-  const getMovieDetails = async () => {
+  const isCurrentFavorite = isFavorite(movieId ? movieId : '0')
+
+  const getMovieDetails = async (movieId: string) => {
     const { data, error: responseError, success } = await api.get<
       never,
       AxiosResponse
-    >(`/movie/${params.movieId}`)
+    >(`/movie/${movieId}`)
 
     if (success) {
       return data
@@ -40,68 +43,38 @@ const MovieDetail = () => {
     return false
   }
 
-  const getRelatedMovies = async () => {
+  const getRelatedMovies = async (movieId: string) => {
     const { data, error: responseError, success } = await api.get<
       never,
       AxiosResponse
-    >(`/movie/${params.movieId}/similar`)
-    console.log({ data, responseError, success })
+    >(`/movie/${movieId}/similar`)
 
     if (success) {
-      setRelatedMovies(data.results)
+      return data.results
     }
     return false
   }
-
   useEffect(() => {
-    if (localStorage.getItem('favorites')) {
-      const favorites: MovieProps[] = JSON.parse(
-        localStorage.getItem('favorites') || '',
-      )
-
-      setIsFavorite(favorites.some((m) => m.id === params.movieId))
-
-      setFavoritesMovie(favorites)
-    } else {
-      setIsFavorite(false)
-    }
-
-    if (params.movieId) {
+    if (movieId && movieId != movieDetail.id) {
       setLoading(true)
-
-      getMovieDetails().then(async (movie) => {
-        console.log({ movie })
+      getMovieDetails(movieId).then((movie) => {
         if (movie) {
           setMovieDetail(movie)
-
-          await getRelatedMovies()
+          getRelatedMovies(movie.id).then((movies) => {
+            if (movies) {
+              setRelatedMovies(movies)
+            }
+            setLoading(false)
+          })
         }
-        setLoading(false)
       })
     }
-  }, [params])
-
-  const saveToFavorites = () => {
-    if (favoritesMovies.some((m) => m.id === params.movieId)) {
-      console.log({ favClick: 9 })
-      const updatedFavorites = favoritesMovies.filter(
-        (m) => m.id !== params.movieId,
-      )
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
-      setFavoritesMovie(updatedFavorites)
-      setIsFavorite(false)
-    } else {
-      const updatedFavorites = [...favoritesMovies, movieDetail]
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
-      setFavoritesMovie(updatedFavorites)
-      setIsFavorite(true)
-    }
-  }
+  }, [movieId])
 
   return (
     <Grid container justifyContent="center" className="movies-bg">
       {loading ? (
-        <Loader />
+        <Loader animation={movieAnimation} />
       ) : (
         <>
           <HeadTitle pageName={movieDetail.title} />
@@ -111,7 +84,14 @@ const MovieDetail = () => {
               <PageTitle text={movieDetail.title} />
             </Grid>
             <Grid item>
-              <FavoriteIcon isFavorite={isFavorite} onClick={saveToFavorites} />
+              <FavoriteIcon
+                isFavorite={isCurrentFavorite}
+                onClick={() =>
+                  isCurrentFavorite
+                    ? removeFavorite(movieId ? movieId : '0')
+                    : addFavorite(movieDetail)
+                }
+              />
             </Grid>
           </Grid>
           <Grid container>
