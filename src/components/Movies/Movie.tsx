@@ -20,9 +20,14 @@ const Movie = (props: MovieProps) => {
       <Card onClick={() => handleMovieClick(id)}>
         <CardActionArea>
           <LazyLoadImage
-            effect="blur"
+            effect={poster_path ? 'blur' : undefined}
             wrapperClassName="movie-list-poster-image"
-            src={`${process.env.REACT_APP_TMDB_IMAGE_URL}${poster_path}`}
+            src={
+              poster_path
+                ? `${process.env.REACT_APP_TMDB_IMAGE_URL}${poster_path}`
+                : undefined
+            }
+            placeholderSrc="https://via.placeholder.com/250x400.png?text=Poster+not+available"
             alt={title}
           />
           <CardContent className="movie-list-overview">

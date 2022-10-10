@@ -1,7 +1,9 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { InputOnChange, FormSubmit } from '../../utils/commonTypes'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -23,10 +25,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
-  pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  cursor: 'pointer !important',
+  zIndex: 10,
 }))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -44,15 +47,36 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 const SearchInput = () => {
+  const navigate = useNavigate()
+  const [searchParam] = useSearchParams()
+
+  const [search, setSearch] = useState(searchParam.get('search'))
+
+  const handleSearch = (e: FormSubmit) => {
+    e.preventDefault()
+    console.log('search')
+    if (search && search.length > 0) {
+      navigate(`/movie/search?search=${search}`)
+    }
+  }
+
+  const handleSearchChange = (e: InputOnChange) => {
+    setSearch(e.target.value)
+  }
+
   return (
     <Search>
       <SearchIconWrapper>
-        <SearchIcon />
+        <SearchIcon onClick={handleSearch} />
       </SearchIconWrapper>
-      <StyledInputBase
-        placeholder="Search movie…"
-        inputProps={{ 'aria-label': 'search' }}
-      />
+      <form onSubmit={handleSearch}>
+        <StyledInputBase
+          placeholder="Search movie…"
+          inputProps={{ 'aria-label': 'search', type: 'search' }}
+          value={search}
+          onChange={handleSearchChange}
+        />
+      </form>
     </Search>
   )
 }

@@ -6,6 +6,7 @@ import ProtectedLayout from './layouts/ProtectedLayout'
 import Home from './pages/home'
 import MovieDetail from './pages/movies/detail'
 import MovieFavorites from './pages/movies/favorites'
+import MovieSearch from './pages/movies/search'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/movie/:movieId" element={<MovieDetail />} />
           <Route path="/movie/favorites" element={<MovieFavorites />} />
+          <Route path="/movie/search" element={<MovieSearch />} />
         </Route>
       </Routes>
     </BrowserRouter>

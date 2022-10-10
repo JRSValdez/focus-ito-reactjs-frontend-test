@@ -99,6 +99,7 @@ const MovieDetail = () => {
               <LazyLoadImage
                 effect="blur"
                 wrapperClassName="movie-list-poster-image"
+                placeholderSrc="https://via.placeholder.com/220x330.svg?text=Poster+not+available"
                 src={`${process.env.REACT_APP_TMDB_BIG_IMAGE_URL}${movieDetail.poster_path}`}
                 alt={movieDetail.title}
               />
@@ -122,7 +123,13 @@ const MovieDetail = () => {
             </Grid>
           </Grid>
           <PageSubtitle text="Similar movies" />
-          <MovieList movies={relatedMovies} />
+          {relatedMovies.length > 0 ? (
+            <MovieList movies={relatedMovies} />
+          ) : (
+            <Grid container justifyContent="center">
+              <span>Similar movies not found</span>
+            </Grid>
+          )}
         </>
       )}
     </Grid>
